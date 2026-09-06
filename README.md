@@ -51,6 +51,17 @@ logscry examples/sample.syslog --model ./models/qwen2.5-3b-instruct-q4_k_m.gguf 
 python -m logscry examples/sample.syslog --model ./models/qwen2.5-3b-instruct-q4_k_m.gguf
 ```
 
+### Pipe from other logs
+
+Progress goes to stderr; the Summary/Findings report goes to stdout.
+
+```bash
+journalctl -n 500 --no-pager | logscry --model ./models/qwen2.5-3b-instruct-q4_k_m.gguf --prompt syslog
+journalctl -u ssh --no-pager | logscry - --model ./models/qwen2.5-3b-instruct-q4_k_m.gguf --prompt syslog
+```
+
+Omit the logfile (or pass `-`) when piping. Use `--no-pager` with `journalctl` so output is plain text.
+
 | Flag | Meaning |
 | --- | --- |
 | `--download` | Download a GGUF into `--models-dir` |
