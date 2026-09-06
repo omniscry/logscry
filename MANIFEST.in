@@ -1,0 +1,12 @@
+# Include non-Python files in the source distribution
+include LICENSE
+include README.md
+include requirements.txt
+recursive-include logscry/prompts *.prompt
+recursive-include examples *
+graft tests
+global-exclude *.py[cod]
+global-exclude __pycache__
+global-exclude *.so
+global-exclude .DS_Store
+

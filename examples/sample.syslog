@@ -1,0 +1,10 @@
+Sep  6 04:01:12 web01 systemd[1]: Started nginx.service.
+Sep  6 04:01:18 web01 sshd[1422]: Accepted publickey for deploy from 10.0.0.12 port 51244 ssh2
+Sep  6 04:12:03 web01 sshd[1881]: Failed password for invalid user admin from 203.0.113.44 port 44122 ssh2
+Sep  6 04:12:07 web01 sshd[1881]: Failed password for invalid user admin from 203.0.113.44 port 44122 ssh2
+Sep  6 04:12:11 web01 sshd[1881]: Failed password for invalid user root from 203.0.113.44 port 44122 ssh2
+Sep  6 04:12:12 web01 sshd[1881]: Connection closed by invalid user root 203.0.113.44 port 44122 [preauth]
+Sep  6 04:31:44 web01 kernel: Out of memory: Killed process 2201 (python3) total-vm:3145728kB
+Sep  6 04:31:45 web01 systemd[1]: app.service: Main process exited, code=killed, status=9/KILL
+Sep  6 04:31:45 web01 systemd[1]: app.service: Failed with result 'oom-kill'.
+Sep  6 04:32:01 web01 systemd[1]: app.service: Scheduled restart job, restart counter is at 1.

@@ -1,0 +1,60 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "logscry"
+version = "0.1.0"
+description = "Local LLM-based log analyzer for Linux"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "OmniScry" }]
+keywords = [
+    "log",
+    "syslog",
+    "llm",
+    "llama.cpp",
+    "gguf",
+    "log-analysis",
+    "cli",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "Operating System :: Linux/Unix",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: System :: Logging",
+    "Topic :: Utilities",
+]
+dependencies = ["llama-cpp-python", "huggingface_hub"]
+
+[project.urls]
+Homepage = "https://github.com/OmniScry/logscry"
+Documentation = "https://github.com/OmniScry/logscry#readme"
+Repository = "https://github.com/OmniScry/logscry"
+Issues = "https://github.com/OmniScry/logscry/issues"
+
+[project.scripts]
+logscry = "logscry.cli:main"
+
+[project.optional-dependencies]
+dev = ["build", "twine"]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["logscry*"]
+
+[tool.setuptools.package-data]
+logscry = ["prompts/*.prompt"]
+
