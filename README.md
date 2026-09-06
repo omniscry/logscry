@@ -4,8 +4,6 @@ A local LLM-based log analyzer for Linux.
 
 `logscry` reads a log file and a JSON prompt config, runs a GGUF model in-process with [llama-cpp-python](https://github.com/abetlen/llama-cpp-python) on CPU, and prints a human-readable report with **Summary** and **Findings**. Large logs are split on line boundaries and merged.
 
-This uses llama.cpp rather than vLLM so it can run without a GPU.
-
 ## Install
 
 ### From PyPI
