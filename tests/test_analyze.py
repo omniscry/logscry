@@ -2,6 +2,7 @@ import unittest
 from unittest.mock import patch
 
 from logscry.analyze import analyze, merge_partials, _pack_for_merge
+from logscry.chunker import estimate_tokens
 from logscry.config import PromptConfig
 
 
@@ -57,6 +58,14 @@ class AnalyzeTests(unittest.TestCase):
             text = analyze(engine, config, "a\nb\nc\nd\ne\n", show_progress=False)
         self.assertEqual(engine.calls, 4)  # 3 analyze + 1 merge
         self.assertIn("-- Summary", text)
+
+    def test_chunk_log_uses_estimate_tokens(self) -> None:
+        engine = FakeEngine()
+        config = PromptConfig(system_prompt="You are a log analyzer.")
+        with patch("logscry.analyze.chunk_log", return_value=["line1\n"]) as mocked:
+            analyze(engine, config, "line1\n", show_progress=False)
+        _text, count_tokens, _budget = mocked.call_args.args
+        self.assertIs(count_tokens, estimate_tokens)
 
 
 if __name__ == "__main__":

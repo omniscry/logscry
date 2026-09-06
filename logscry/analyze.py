@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from logscry.chunker import chunk_log
+from logscry.chunker import chunk_log, estimate_tokens
 from logscry.config import PromptConfig
 from logscry.engine import Engine
 from logscry.progress import ProgressBar, count_lines, status
@@ -30,7 +30,7 @@ def analyze(
     total_lines = count_lines(log_text)
     status("preparing log chunks...", enabled=show_progress)
     budget = _prompt_budget(engine, config)
-    chunks = chunk_log(log_text, engine.count_tokens, budget)
+    chunks = chunk_log(log_text, estimate_tokens, budget)
     total_chunks = len(chunks)
     merge_needed = total_chunks > 1
     progress = ProgressBar(

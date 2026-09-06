@@ -6,6 +6,16 @@ from collections.abc import Callable
 
 CountTokens = Callable[[str], int]
 
+# Conservative: overestimate tokens so packed chunks stay under n_ctx.
+CHARS_PER_TOKEN = 2
+
+
+def estimate_tokens(text: str) -> int:
+    """Estimate tokens from character count. Empty text is 0 tokens."""
+    if not text:
+        return 0
+    return max((len(text) + CHARS_PER_TOKEN - 1) // CHARS_PER_TOKEN, 1)
+
 
 def chunk_log(
     text: str,
